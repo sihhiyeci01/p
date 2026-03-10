@@ -1,0 +1,1 @@
+find C:/dev/p/build -type f ! -path '*/C-/*' -delete
