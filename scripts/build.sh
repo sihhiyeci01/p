@@ -1,3 +1,4 @@
+SYSTEM_HEADERS="cstdlib iostream chrono exception source_location stdexcept string string_view utility"
 ROOT=C:/dev/p
 
 SRC=$ROOT/src
@@ -14,6 +15,12 @@ echo $(pwd)
 mkdir -p $BUILD $OBJ/{application,exception,logging} $BIN
 
 cd $BUILD
+
+for header in $SYSTEM_HEADERS; do
+    if [ ! -f "$BUILD/gcm.cache/C-/msys64/mingw64/include/c++/15.2.0/$header.gcm" ]; then
+        $CXX $FLAGS -x c++-system-header $header
+    fi
+done
 
 $CXX $FLAGS -c $SRC/exception/exception.cppm     -o $OBJ/exception/exception.cppm.o
 $CXX $FLAGS -c $SRC/logging/log.cppm             -o $OBJ/logging/log.cppm.o
