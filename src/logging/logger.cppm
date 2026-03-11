@@ -1,19 +1,10 @@
 export module logging.logger;
 
+export import logging.file;
 export import logging.log;
 
-
 export namespace logging
-{
-	class file
-	{
-		std::FILE* handle;
-		
-	public:
-		file() = default;
-		file(const char* path, const char* mode);
-	};
-	
+{	
 	class logger
 	{
 	public:
@@ -33,6 +24,7 @@ export namespace logging
 		{
 			sink sink;
 			mode mode;
+			file file;
 		};
 		
 	private:
