@@ -1,7 +1,7 @@
 module application;
 
 application::application(cli::args args)
-: flags(args.parse())
+	: flags(args.parse())
 {}
 
 int application::exec()

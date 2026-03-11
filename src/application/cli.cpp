@@ -5,15 +5,16 @@ import <string_view>;
 import <stdexcept>;
 
 cli::args::args(int argc, char* const* argv) noexcept
-: argc(argc), argv(argv)
+	: argc(argc)
+	, argv(argv)
 {}
 
 cli::args::flags cli::args::parse() const
 {
-	flags f{};
-	for (int i = 1; i < argc; ++i)
+	flags f{  };
+	for (int i{ 1 }; i < argc; ++i)
 	{
-		std::string_view arg = argv[i];
+		std::string_view arg{ argv[i] };
 		if (arg == "--help")
 		{
 			f.help = true;
@@ -24,7 +25,7 @@ cli::args::flags cli::args::parse() const
 		}
 		else
 		{
-			throw std::invalid_argument(std::string{ arg });
+			throw std::invalid_argument{ std::string{ arg } + ": command not recognized" };
 		}
 	}
 	return f;

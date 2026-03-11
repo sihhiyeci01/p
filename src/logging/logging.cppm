@@ -2,33 +2,40 @@ export module logging.logger;
 
 export import logging.log;
 
+
 export namespace logging
 {
-	class Logger
+	class file
 	{
-	  public:
-		enum class Sink
+		std::FILE* handle;
+		
+	public:
+		file() = default;
+		file(const char* path, const char* mode);
+	};
+	
+	class logger
+	{
+	public:
+		enum class sink
 		{
-			File,
-			Console,
-			Both
+			file,
+			console
+		};
+	  
+		enum class mode
+		{
+			debug,
+			release
+		};
+	  
+		struct config
+		{
+			sink sink;
+			mode mode;
 		};
 		
-		enum class Mode
-		{
-			Debug,
-			Release
-		};
-		
-		struct Config
-		{
-			Sink sink;
-			Mode mode;
-		};
-		
-		explicit Logger(Config);
-		
-	  private:
-		Config config;
+	private:
+		config config;
 	};
 }

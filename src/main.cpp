@@ -10,5 +10,6 @@ int main(int argc, char* const* argv)
 	}
 	catch (...)
 	{
+		return exception::handle(std::current_exception());
 	}
 }

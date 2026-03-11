@@ -1,4 +1,4 @@
-SYSTEM_HEADERS="cstdlib iostream chrono exception source_location stdexcept string string_view utility"
+SYSTEM_HEADERS="cstdlib cstdio iostream chrono exception source_location stdexcept string string_view utility"
 ROOT=C:/dev/p
 
 SRC=$ROOT/src
