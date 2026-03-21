@@ -45,7 +45,7 @@ logging::logger::~logger()
 void logging::logger::log(const logging::entry& data) const
 {
 	std::fprintf(
-		sink.get(), "%s [%s] [%s:%d] %s: %s\n",
+		sink.get(), "%s [%s] [%s:%u] %s: %s\n",
 		to_iso8601(data.time).c_str(),
 		to_str(data.lvl),
 		data.loc.file_name(),
