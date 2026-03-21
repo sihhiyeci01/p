@@ -4,9 +4,10 @@ export import application.cli;
 
 export class application
 {
-	cli::args::flags flags;
+	cli::flags flags{};
 	
-  public:
+public:
 	explicit application(cli::args);
+	
 	int exec();
 };

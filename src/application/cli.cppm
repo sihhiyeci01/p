@@ -2,18 +2,19 @@ export module application.cli;
 
 export namespace cli
 {
+	struct flags
+	{
+		bool help = false;
+		bool debug = false;
+	};
+	
 	struct args
 	{
-		struct flags
-		{
-			bool help = false;
-			bool debug = false;
-		};
+		args(int, char* const*) noexcept;
 		
-		args(int argc, char* const* argv) noexcept;
 		flags parse() const;
 		
-	  private:
+	private:
 		int argc;
 		char* const* argv;
 	};

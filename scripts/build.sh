@@ -1,8 +1,8 @@
 # config
 ROOT=C:/dev/p
-SYSTEM_HEADERS="cstdlib cstdio iostream chrono exception source_location stdexcept string string_view utility"
+SYSTEM_HEADERS="cstdint cstdlib cstdio cerrno memory iostream chrono format exception stdexcept system_error source_location string string_view utility ctime filesystem"
 CXX=g++
-FLAGS="-std=c++20 -fmodules-ts"
+FLAGS="-std=c++23 -fmodules-ts"
 GCC_VER=$($CXX -dumpversion)
 
 # paths
@@ -22,15 +22,13 @@ for header in $SYSTEM_HEADERS; do
 done
 
 # interface
+$CXX $FLAGS -c $SRC/logging/source_location.cppm -o $OBJ/logging/source_location.cppm.o
+$CXX $FLAGS -c $SRC/logging/logging.cppm         -o $OBJ/logging/logging.cppm.o
 $CXX $FLAGS -c $SRC/exception/exception.cppm     -o $OBJ/exception/exception.cppm.o
-$CXX $FLAGS -c $SRC/logging/file.cppm            -o $OBJ/logging/file.cppm.o
-$CXX $FLAGS -c $SRC/logging/log.cppm             -o $OBJ/logging/log.cppm.o
-$CXX $FLAGS -c $SRC/logging/logger.cppm          -o $OBJ/logging/logger.cppm.o
 $CXX $FLAGS -c $SRC/application/cli.cppm         -o $OBJ/application/cli.cppm.o
 $CXX $FLAGS -c $SRC/application/application.cppm -o $OBJ/application/application.cppm.o
 
 # implementation
-$CXX $FLAGS -c $SRC/logging/file.cpp             -o $OBJ/logging/file.cpp.o
 $CXX $FLAGS -c $SRC/logging/logger.cpp           -o $OBJ/logging/logger.cpp.o
 $CXX $FLAGS -c $SRC/application/cli.cpp          -o $OBJ/application/cli.cpp.o
 $CXX $FLAGS -c $SRC/application/application.cpp  -o $OBJ/application/application.cpp.o

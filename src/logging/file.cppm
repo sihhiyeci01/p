@@ -1,27 +1,25 @@
 export module logging.file;
 
-export import <cstdio>;
+import <filesystem>;
+import <cstdio>;
 
 export namespace logging
 {
 	class file
 	{
-		std::FILE* handle = nullptr;
+		std::FILE* handle;
 		
 	public:
-		file(const char* path, const char* mode);
+		file(std::filesystem::path);
 		
-		~file() noexcept;
+		~file();
 		
 		file(const file&) = delete;
 		file& operator=(const file&) = delete;
 		
-		file(file&& other) noexcept; 
-		file& operator=(file&& other) noexcept;
+		file(file&&) = delete;
+		file& operator=(file&&) = delete;
 		
-		explicit operator bool() const noexcept
-		{
-			return handle;
-		}
+		int print(const char*) const noexcept;
 	};
 }
