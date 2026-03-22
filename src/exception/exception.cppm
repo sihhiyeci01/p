@@ -20,11 +20,11 @@ export namespace exception
 		}
 		catch (const std::exception& ex)
 		{
-			std::cerr << ex.what() << '\n';
+			logging::logger::log(stderr, logging::level::fatal, ex.what());
 		}
 		catch (...)
 		{
-			std::cerr << msg << '\n';
+			logging::logger::log(stderr, logging::level::fatal, msg);
 		}
 		
 		return EXIT_FAILURE;
@@ -38,7 +38,7 @@ export namespace exception
 		}
 		catch (const std::exception& ex)
 		{
-			logger.log(stderr, logging::level::fatal, ex.what());
+			logger.log(logging::level::fatal, ex.what());
 		}
 		catch (...)
 		{

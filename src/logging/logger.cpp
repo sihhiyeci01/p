@@ -25,20 +25,19 @@ namespace
 	std::string to_iso8601(std::chrono::system_clock::time_point tp)
 	{
 		return std::format(
-			"{:%FT%T}Z",
-			std::chrono::floor<std::chrono::milliseconds>(tp)
+			"{:%FT%T}Z", std::chrono::floor<std::chrono::milliseconds>(tp)
 		);
 	}
 	
 	std::string extract_function_name(std::string_view signature)
 	{
-		auto paren = signature.find('(');
+		std::string_view::size_type paren = signature.find('(');
 		if (paren != std::string_view::npos)
 		{
 			signature = signature.substr(0, paren);
 		}
 		
-		auto space = signature.rfind(' ');
+		std::string_view::size_type space = signature.rfind(' ');
 		if (space != std::string_view::npos)
 		{
 			signature = signature.substr(space + 1);	
@@ -63,9 +62,7 @@ logging::logger::~logger()
 }
 
 void
-logging::logger::log(std::FILE* sink,
-					 logging::level lvl,
-                     std::string_view msg,
+logging::logger::log(std::FILE* sink, logging::level lvl, std::string_view msg,
                      std::source_location loc,
                      std::chrono::system_clock::time_point tp)
 {
@@ -81,8 +78,7 @@ logging::logger::log(std::FILE* sink,
 }
 
 void
-logging::logger::log(logging::level lvl,
-                     std::string_view msg,
+logging::logger::log(logging::level lvl, std::string_view msg,
                      std::source_location loc,
                      std::chrono::system_clock::time_point tp) const
 {
