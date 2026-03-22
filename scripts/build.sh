@@ -28,6 +28,7 @@ $CXX $FLAGS -c $SRC/application/cli.cppm         -o $OBJ/application/cli.cppm.o
 $CXX $FLAGS -c $SRC/application/application.cppm -o $OBJ/application/application.cppm.o
 
 # implementation
+$CXX $FLAGS -c $SRC/exception/exception.cpp      -o $OBJ/exception/exception.cpp.o
 $CXX $FLAGS -c $SRC/logging/logger.cpp           -o $OBJ/logging/logger.cpp.o
 $CXX $FLAGS -c $SRC/application/cli.cpp          -o $OBJ/application/cli.cpp.o
 $CXX $FLAGS -c $SRC/application/application.cpp  -o $OBJ/application/application.cpp.o

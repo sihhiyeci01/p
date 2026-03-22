@@ -22,10 +22,8 @@ src/
 ├── logging/            # Dosya tabanlı loglama sistemi
 │   ├── logging.cppm
 │   └── logger.cpp
-├── exception/          # İstisna yönetimi
-│   └── exception.cppm
-└── filesystem/         # Henüz implemente edilmedi
-    └── filesystem.cppm/.cpp
+└── exception/          # İstisna yönetimi
+    └── exception.cppm/.cpp
 ```
 
 ## Teknoloji
