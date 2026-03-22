@@ -1,8 +1,7 @@
 export module logging;
 
-export import logging.source_location;
-
-export import <string>;
+export import <string_view>;
+export import <source_location>;
 export import <chrono>;
 
 import <filesystem>;
@@ -13,29 +12,11 @@ export namespace logging
 {	
 	enum class level
 	{
-		info,
 		debug,
+		info,
 		warn,
 		error,
 		fatal
-	};
-	
-	struct entry
-	{
-		std::string content;
-		level lvl;
-		source_location loc;
-		std::chrono::system_clock::time_point time;
-		
-		entry(std::string str,
-		      level lvl = level::info,
-		      source_location loc = std::source_location::current(),
-		      std::chrono::system_clock::time_point tp = std::chrono::system_clock::now())
-		: content(std::move(str))
-		, lvl(lvl)
-		, loc(loc)
-		, time(tp)
-		{}
 	};
 	
 	class logger
@@ -53,6 +34,14 @@ export namespace logging
 		logger(logger&&) = delete;
 		logger& operator=(logger&&) = delete;
 		
-		void log(const entry&) const;
+		static void
+		log(std::FILE*, level, std::string_view,
+		    std::source_location loc = std::source_location::current(),
+		    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now());
+		
+		void 
+		log(level, std::string_view,
+		    std::source_location loc = std::source_location::current(),
+		    std::chrono::system_clock::time_point tp = std::chrono::system_clock::now()) const;
 	};
 }

@@ -22,7 +22,6 @@ for header in $SYSTEM_HEADERS; do
 done
 
 # interface
-$CXX $FLAGS -c $SRC/logging/source_location.cppm -o $OBJ/logging/source_location.cppm.o
 $CXX $FLAGS -c $SRC/logging/logging.cppm         -o $OBJ/logging/logging.cppm.o
 $CXX $FLAGS -c $SRC/exception/exception.cppm     -o $OBJ/exception/exception.cppm.o
 $CXX $FLAGS -c $SRC/application/cli.cppm         -o $OBJ/application/cli.cppm.o

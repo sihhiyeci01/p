@@ -8,8 +8,6 @@ import <stdexcept>;
 import <iostream>;
 import <cstdlib>;
 
-using namespace logging;
-
 constexpr const char* msg = "unknown type of exception";
 
 export namespace exception
@@ -32,7 +30,7 @@ export namespace exception
 		return EXIT_FAILURE;
 	}
 	
-	int handle(std::exception_ptr ptr, const logger& logger)
+	int handle(std::exception_ptr ptr, const logging::logger& logger)
 	{
 		try
 		{
@@ -40,11 +38,11 @@ export namespace exception
 		}
 		catch (const std::exception& ex)
 		{
-			logger.log(entry{ ex.what(), level::fatal });
+			logger.log(stderr, logging::level::fatal, ex.what());
 		}
 		catch (...)
 		{
-			logger.log(entry{ msg, level::fatal });
+			logger.log(logging::level::fatal, msg);
 		}
 		
 		return EXIT_FAILURE;

@@ -9,12 +9,11 @@ application::application(cli::args args)
 
 int application::exec()
 {
-	logging::logger logger("pilot.log");
-	logger.log(logging::entry("test"));
+	logging::logger logger("logs/pilot.log");
 	
 	try
 	{
-		throw "what happened?";
+		// incomplete
 	}
 	catch (...)
 	{
