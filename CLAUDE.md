@@ -55,3 +55,46 @@ log.log(logging::level::info, "Mesaj");
 - `std::chrono::system_clock::now()` de default — timestamp otomatik yakalanır
 
 Log formatı: `[ISO8601 timestamp] [LEVEL] dosya:satır fonksiyon(): mesaj`
+
+## Stil
+
+- **Girinti:** Tab (boşluk değil)
+- **Süslü parantez:** Allman — açılış `{` her zaman yeni satırda
+- **İsimlendirme:** Her şey `snake_case` — sınıflar, fonksiyonlar, değişkenler, namespace'ler, enum değerleri
+- **Initializer list:** Satır başı `:` ve `,` ile
+
+```cpp
+application::application(cli::args args)
+: flags(args.parse())
+{}
+
+cli::args::args(int argc, char* const* argv) noexcept
+: argc(argc)
+, argv(argv)
+{}
+```
+
+- **Uzun dönüş tipleri** ayrı satırda:
+
+```cpp
+static void
+log(std::FILE*, level, std::string_view, ...);
+```
+
+- **Deklarasyonlarda** parametre adları yazılmaz, **implementasyonlarda** yazılır:
+
+```cpp
+// .cppm
+int handle(std::exception_ptr);
+
+// .cpp
+int handle(std::exception_ptr ptr) { ... }
+```
+
+- **Başlatma:** Süslü parantez tercih edilir: `cli::flags result{};`, `application{ cli::args(...) }`
+- **Kontrol akışında** parantez öncesi boşluk: `if (`, `for (`, `catch (`
+- **Fonksiyon çağrılarında** boşluk yok: `args.parse()`, `ptr.reset()`
+- **Dosya-yerel yardımcılar** anonim namespace içinde (`namespace { ... }`)
+- **Import sırası:** modül bildirimi → `export import` → proje modülleri → standart başlıklar
+- **`explicit`** tek parametreli constructor'larda kullanılır
+- **`noexcept`** exception fırlatmayacak fonksiyonlarda belirtilir
