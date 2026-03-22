@@ -98,3 +98,10 @@ int handle(std::exception_ptr ptr) { ... }
 - **Import sırası:** modül bildirimi → `export import` → proje modülleri → standart başlıklar
 - **`explicit`** tek parametreli constructor'larda kullanılır
 - **`noexcept`** exception fırlatmayacak fonksiyonlarda belirtilir
+
+## Dil
+
+- **Kod:** İngilizce (identifier'lar, log çıktıları, yorumlar)
+- **Commit mesajları:** İngilizce
+- **Dokümantasyon (CLAUDE.md):** Türkçe
+- **Konuşma dili:** Türkçe
