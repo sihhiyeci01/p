@@ -1,8 +1,8 @@
 # config
 ROOT=C:/dev/p
-SYSTEM_HEADERS="cstdint cstdlib cstdio cerrno memory iostream chrono format exception stdexcept system_error source_location string string_view utility ctime filesystem"
+SYSTEM_HEADERS="cstddef filesystem cstdint cstdlib cstdio cerrno memory iostream chrono format exception stdexcept system_error source_location string string_view utility ctime"
 CXX=g++
-FLAGS="-std=c++23 -fmodules-ts"
+FLAGS="-std=c++23 -fmodules-ts -I$ROOT/src"
 GCC_VER=$($CXX -dumpversion)
 
 # paths
@@ -20,6 +20,8 @@ for header in $SYSTEM_HEADERS; do
         $CXX $FLAGS -x c++-system-header $header
     fi
 done
+
+$CXX -std=c++23 -I$SRC -c $SRC/win32.cpp -o $OBJ/win32.o
 
 # interface
 $CXX $FLAGS -c $SRC/logging/logging.cppm         -o $OBJ/logging/logging.cppm.o
